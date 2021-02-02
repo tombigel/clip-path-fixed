@@ -63,7 +63,7 @@
     </div>
     <div id="anchor"></div>
     <script>
-      window.addEventListener("orientationchange", function (event) {
+     window.onorientationchange = (event) => {
         out.textContent =
           "the orientation of the device is now " +
           event.target.screen.orientation.angle;
