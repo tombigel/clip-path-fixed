@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+      html {
+        --strip-height: 300px;
+      }
+      #outer {
+        box-sizing: border-box;
+        width: 100%;
+        height: var(--strip-height);
+        top: calc(50vh - var(--strip-height) / 2);
+        border: 1px solid #000;
+        position: relative;
+        overflow: hidden;
+        clip-path: inset(0);
+      }
+
+      #inner {
+        height: 100vh;
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        // https://stripesgenerator.com/
+        background-image: linear-gradient(
+          45deg,
+          #98cd8d 25%,
+          #f6f0cf 25%,
+          #f6f0cf 50%,
+          #98cd8d 50%,
+          #98cd8d 75%,
+          #f6f0cf 75%,
+          #f6f0cf 100%
+        );
+        background-size: 56.57px 56.57px;
+      }
+
+      #anchor {
+        position: relative;
+        margin-top: 150vh;
+      }
+
+      p {
+        position: absolute;
+        top: 1em;
+        left: 2em;
+        white-space: pre-line;
+      }
+    </style>
+</head>
+<body>
+    <p>On ipad orientation change, clipPath:inset(0) or polygon(0 0, 100% 0, 100% 100%, 0 100%) doesn't render
+      Trying orientation change
+      <span id="out"></span>
+    </p>
+    <div id="outer">
+      <div id="inner"></div>
+    </div>
+    <div id="anchor"></div>
+    <script>
+      window.addEventListener("orientationchange", function (event) {
+        out.textContent =
+          "the orientation of the device is now " +
+          event.target.screen.orientation.angle;
+        outer.style.clipPath = "";
+        requestAnimationFrame(() => (outer.style.clipPath = "inset(0)"));
+      });
+    </script>
+</body>
+</html>
