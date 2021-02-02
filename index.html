@@ -63,15 +63,14 @@
     </div>
     <div id="anchor"></div>
     <script>
-        const out = document.getElementById('out')
-        const outer = document.getElementById('outer')
-     window.onorientationchange = (event) => {
-        out.textContent =
-          "the orientation of the device is now " +
-          window.orientation;
-        outer.style.clipPath = "";
-        requestAnimationFrame(() => (outer.style.clipPath = "inset(0)"));
-      };
+        window.addEventListener("orientationchange", function (event) {
+          out.textContent =
+            "the orientation of the device is now " + window.orientation;
+          inner.style.position = "absolute";
+          // Promise.resolve().then(() => (inner.style.position = "fixed"));
+          setTimeout(() => (inner.style.position = "fixed"), 0);
+          // requestAnimationFrame(() => (inner.style.position = "fixed"));
+        });
     </script>
 </body>
 </html>
