@@ -68,7 +68,7 @@
      window.onorientationchange = (event) => {
         out.textContent =
           "the orientation of the device is now " +
-          event.target.screen.orientation.angle;
+          window.orientation;
         outer.style.clipPath = "";
         requestAnimationFrame(() => (outer.style.clipPath = "inset(0)"));
       };
