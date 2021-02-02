@@ -55,14 +55,16 @@
 </head>
 <body>
     <p>On ipad orientation change, clipPath:inset(0) or polygon(0 0, 100% 0, 100% 100%, 0 100%) doesn't render
-      Trying orientation change
-      <span id="out"></span>
+     
+      <span id="out">Waiting for orientation to change...</span>
     </p>
     <div id="outer">
       <div id="inner"></div>
     </div>
     <div id="anchor"></div>
     <script>
+        const out = document.getElementById('out')
+        const outer = document.getElementById('outer')
      window.onorientationchange = (event) => {
         out.textContent =
           "the orientation of the device is now " +
